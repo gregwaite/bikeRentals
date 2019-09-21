@@ -4,6 +4,7 @@ import { AuthRoute } from "../util/route_util";
 import SignupFormContainer from "./session_form/signup_form_container";
 import LoginFormContainer from "./session_form/login_form_container";
 import GreetingContainer from "./greeting/greeting_container";
+import ProductIndex from "./products/product_index_container";
 
 const App = () => (
   <div>
@@ -11,6 +12,7 @@ const App = () => (
     <GreetingContainer />
     <AuthRoute path="/login" component={LoginFormContainer} />
     <AuthRoute path="/signup" component={SignupFormContainer} />
+    <ProductIndex />
   </div>
 );
 
