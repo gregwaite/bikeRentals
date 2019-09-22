@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { fetchProducts } from "../../actions/product_actions";
+import { createOrder } from "../../actions/order_actions";
 import ProductIndex from "./product_index";
 
 const mapStateToProps = (state, ownProps) => {
@@ -10,7 +11,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchProducts: () => dispatch(fetchProducts())
+    fetchProducts: () => dispatch(fetchProducts()),
+    createOrder: () => dispatch(createOrder())
   };
 };
 

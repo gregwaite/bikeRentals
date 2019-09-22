@@ -15,17 +15,17 @@ class ProductIndex extends React.Component {
     this.props.fetchProducts();
   }
 
-  addCheckoutProducts(e, product, quantity) {
+  addCheckoutProducts(e, product, amount) {
     e.preventDefault();
     const checkoutProduct = Object.assign({}, product);
-    checkoutProduct.quantity = quantity;
+    checkoutProduct.amount = amount;
     const checkoutProducts = this.state.checkoutProducts.concat(
       checkoutProduct
     );
     this.setState({ checkoutProducts: checkoutProducts });
   }
   render() {
-    const { products } = this.props;
+    const { products, createOrder } = this.props;
     const { checkoutProducts } = this.state;
 
     const productComponents = products.map(product => {
@@ -43,6 +43,7 @@ class ProductIndex extends React.Component {
         <h1>Checkout</h1>
         <CheckoutProductIndex
           checkoutProducts={checkoutProducts}
+          createOrder={createOrder}
         ></CheckoutProductIndex>
       </div>
     );

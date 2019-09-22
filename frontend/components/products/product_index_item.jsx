@@ -4,7 +4,7 @@ class ProductIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 1
+      amount: 1
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,7 +15,7 @@ class ProductIndexItem extends React.Component {
   }
   render() {
     const { product } = this.props;
-    const { quantity } = this.state;
+    const { amount } = this.state;
     return (
       <div>
         <p>{product.name}</p>
@@ -24,7 +24,7 @@ class ProductIndexItem extends React.Component {
         <p>{product.price}</p>
         <p>{product.product_type}</p>
         <form onSubmit={this.handleSubmit}>
-          <select value={quantity} onChange={this.handleChange}>
+          <select value={amount} onChange={this.handleChange}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -32,7 +32,7 @@ class ProductIndexItem extends React.Component {
             <option value="5">5</option>
           </select>
           <button
-            onClick={e => this.props.handleSubmit(e, product, quantity)}
+            onClick={e => this.props.handleSubmit(e, product, amount)}
           ></button>
         </form>
       </div>

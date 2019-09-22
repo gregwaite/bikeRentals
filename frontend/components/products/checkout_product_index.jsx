@@ -7,7 +7,7 @@ class CheckoutProductIndex extends React.Component {
   }
 
   render() {
-    const { checkoutProducts } = this.props;
+    const { checkoutProducts, createOrder } = this.props;
     const indexItems = checkoutProducts.map((product, i) => {
       return (
         <CheckoutProductIndexItem
@@ -16,7 +16,11 @@ class CheckoutProductIndex extends React.Component {
         ></CheckoutProductIndexItem>
       );
     });
-    return <div>{indexItems}</div>;
+    return (
+      <div>
+        {indexItems} <button onClick={createOrder}></button>
+      </div>
+    );
   }
 }
 

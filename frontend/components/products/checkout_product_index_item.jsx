@@ -13,7 +13,7 @@ class CheckoutProductIndexItem extends React.Component {
         <p>{product.description}</p>
         <p>{product.price}</p>
         <p>{product.product_type}</p>
-        <p>{product.quantity}</p>
+        <p>{product.amount}</p>
       </div>
     );
   }
