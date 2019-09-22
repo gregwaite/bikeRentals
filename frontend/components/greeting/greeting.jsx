@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Greeting = ({ currentUser, logout, history }) => {
+const Greeting = ({ currentUser, logout, history, destroyOrders }) => {
   const sessionLinks = () => (
     <nav>
       <Link to="/login">Login</Link>
@@ -15,6 +15,7 @@ const Greeting = ({ currentUser, logout, history }) => {
       <button
         onClick={() => {
           logout();
+          destroyOrders();
           history.push("/");
         }}
       >

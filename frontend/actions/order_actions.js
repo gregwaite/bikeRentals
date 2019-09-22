@@ -2,6 +2,7 @@ import * as APIUtil from "../util/order_api_util";
 
 export const RECEIVE_ORDER = "RECEIVE_ORDER";
 export const RECEIVE_ORDERS = "RECEIVE_ORDERS";
+export const DESTROY_ORDERS = "DESTROY_ORDERS";
 
 export const receiveOrder = order => {
   return {
@@ -13,6 +14,11 @@ export const receiveOrders = orders => {
   return {
     type: RECEIVE_ORDERS,
     orders: orders
+  };
+};
+export const destroyOrders = () => {
+  return {
+    type: DESTROY_ORDERS
   };
 };
 

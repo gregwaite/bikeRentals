@@ -12,11 +12,11 @@ const App = () => (
     <h1>Bike Rentals</h1>
     <GreetingContainer />
     <Switch>
+      <Route exact path="/" component={ProductIndex}></Route>
       <Route exact path="/orders" component={OrderIndex}></Route>
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
     </Switch>
-    <Route exact path="/" component={ProductIndex}></Route>
   </div>
 );
 

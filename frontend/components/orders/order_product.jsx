@@ -3,7 +3,6 @@ import React from "react";
 class OrderProduct extends React.Component {
   render() {
     const { product, amount } = this.props;
-    debugger;
     return (
       <div>
         <p>{product.name}</p>
