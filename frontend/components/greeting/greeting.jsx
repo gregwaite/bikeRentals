@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Greeting = ({ currentUser, logout }) => {
+const Greeting = ({ currentUser, logout, history }) => {
   const sessionLinks = () => (
     <nav>
       <Link to="/login">Login</Link>
@@ -12,7 +12,14 @@ const Greeting = ({ currentUser, logout }) => {
   const personalGreeting = () => (
     <hgroup>
       <h2>Hi, {currentUser.username}!</h2>
-      <button onClick={logout}>Log Out</button>
+      <button
+        onClick={() => {
+          logout();
+          history.push("/");
+        }}
+      >
+        Log Out
+      </button>
     </hgroup>
   );
   return currentUser ? personalGreeting() : sessionLinks();

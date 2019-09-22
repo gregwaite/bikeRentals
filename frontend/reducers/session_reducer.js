@@ -4,7 +4,8 @@ import {
 } from "../actions/session_actions";
 
 const _nullUser = Object.freeze({
-  id: null
+  id: null,
+  orders: null
 });
 
 const sessionReducer = (state = _nullUser, action) => {

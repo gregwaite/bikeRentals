@@ -11,7 +11,8 @@ class ProductIndexItem extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ quantity: e.target.value });
+    e.preventDefault();
+    this.setState({ amount: e.target.value });
   }
   render() {
     const { product } = this.props;

@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.delete_all
 Product.delete_all
+UserProduct.delete_all
+Order.delete_all
 
 User.create!(
   username: 'guest',

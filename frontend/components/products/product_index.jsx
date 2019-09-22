@@ -1,6 +1,7 @@
 import React from "react";
 import ProductIndexItem from "./product_index_item";
 import CheckoutProductIndex from "./checkout_product_index";
+import { Link } from "react-router-dom";
 
 class ProductIndex extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class ProductIndex extends React.Component {
     this.setState({ checkoutProducts: checkoutProducts });
   }
   render() {
-    const { products, createOrder } = this.props;
+    const { products, createOrder, fetchOrders } = this.props;
     const { checkoutProducts } = this.state;
 
     const productComponents = products.map(product => {
@@ -39,11 +40,15 @@ class ProductIndex extends React.Component {
     });
     return (
       <div>
+        <nav>
+          <Link to="/orders">Your Orders</Link>
+        </nav>
         {productComponents}
         <h1>Checkout</h1>
         <CheckoutProductIndex
           checkoutProducts={checkoutProducts}
           createOrder={createOrder}
+          fetchOrders={fetchOrders}
         ></CheckoutProductIndex>
       </div>
     );

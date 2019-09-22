@@ -1,6 +1,7 @@
 import * as APIUtil from "../util/order_api_util";
 
 export const RECEIVE_ORDER = "RECEIVE_ORDER";
+export const RECEIVE_ORDERS = "RECEIVE_ORDERS";
 
 export const receiveOrder = order => {
   return {
@@ -8,9 +9,20 @@ export const receiveOrder = order => {
     order: order
   };
 };
+export const receiveOrders = orders => {
+  return {
+    type: RECEIVE_ORDERS,
+    orders: orders
+  };
+};
 
-export const createOrder = () => dispatch => {
-  return APIUtil.createOrder().then(order => {
+export const createOrder = order => dispatch => {
+  return APIUtil.createOrder(order).then(order => {
     dispatch(receiveOrder(order));
+  });
+};
+export const fetchOrders = () => dispatch => {
+  return APIUtil.fetchOrders().then(orders => {
+    dispatch(receiveOrders(orders));
   });
 };
