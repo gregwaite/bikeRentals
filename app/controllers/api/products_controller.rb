@@ -2,7 +2,7 @@
 class Api::ProductsController < ApplicationController
 
   def index
-    @products = Product.all.includes(:user_products)
+    @products = Product.all
     render :index
   end
 

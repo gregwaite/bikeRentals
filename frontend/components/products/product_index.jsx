@@ -1,6 +1,6 @@
 import React from "react";
 import ProductIndexItem from "./product_index_item";
-import CheckoutProductIndexItem from "./checkout_product_index_item";
+import CheckoutProductIndex from "./checkout_product_index";
 
 class ProductIndex extends React.Component {
   constructor(props) {
@@ -37,19 +37,13 @@ class ProductIndex extends React.Component {
         ></ProductIndexItem>
       );
     });
-    const checkoutProductsComponents = checkoutProducts.map(product => {
-      return (
-        <CheckoutProductIndexItem
-          checkoutProducts={checkoutProducts}
-          key={product.id}
-        ></CheckoutProductIndexItem>
-      );
-    });
     return (
       <div>
         {productComponents}
         <h1>Checkout</h1>
-        {checkoutProductsComponents}
+        <CheckoutProductIndex
+          checkoutProducts={checkoutProducts}
+        ></CheckoutProductIndex>
       </div>
     );
   }
