@@ -8,7 +8,8 @@ class ProductIndex extends React.Component {
     super(props);
     this.state = {
       checkoutProducts: [],
-      blackList: {}
+      blackList: {},
+      whiteList: { bike: true, accessory: false, addon: false }
     };
 
     this.addCheckoutProducts = this.addCheckoutProducts.bind(this);
@@ -22,24 +23,53 @@ class ProductIndex extends React.Component {
 
   addCheckoutProducts(e, product, amount) {
     e.preventDefault();
+    const whiteList = Object.assign({}, this.state.whiteList);
+    if (product.product_type == "bike") {
+      whiteList["accessory"] = true;
+    } else if (product.product_type == "accessory") {
+      whiteList["addon"] = true;
+    }
+
     const blackList = Object.assign({}, this.state.blackList);
     blackList[product.id] = true;
+
     const checkoutProduct = Object.assign({}, product);
     checkoutProduct.amount = amount;
     const checkoutProducts = this.state.checkoutProducts.concat(
       checkoutProduct
     );
-    this.setState({ checkoutProducts: checkoutProducts, blackList: blackList });
+
+    this.setState({
+      checkoutProducts: checkoutProducts,
+      blackList: blackList,
+      whiteList: whiteList
+    });
   }
   removeCheckoutProducts(e, product) {
     e.preventDefault();
+
     const blackList = Object.assign({}, this.state.blackList);
     blackList[product.id] = false;
+
     const checkoutProduct = Object.assign({}, product);
-    const checkoutProducts = this.state.checkoutProducts.filter(product => {
+    let checkoutProducts = this.state.checkoutProducts.filter(product => {
       return product.id != checkoutProduct.id;
     });
-    this.setState({ checkoutProducts: checkoutProducts, blackList: blackList });
+
+    const whiteList = Object.assign({}, this.state.whiteList);
+    if (!checkoutProducts.find(product => product.product_type == "bike")) {
+      whiteList["accessory"] = false;
+      checkoutProducts = [];
+    } else if (
+      !checkoutProducts.find(product => product.product_type == "accessory")
+    ) {
+      whiteList["addon"] = false;
+    }
+    this.setState({
+      checkoutProducts: checkoutProducts,
+      blackList: blackList,
+      whiteList: whiteList
+    });
   }
 
   orders() {
@@ -68,11 +98,11 @@ class ProductIndex extends React.Component {
   }
   render() {
     const { products, createOrder, loggedIn } = this.props;
-    const { checkoutProducts, blackList } = this.state;
+    const { checkoutProducts, blackList, whiteList } = this.state;
 
     const productComponents = [];
     products.forEach(product => {
-      if (!blackList[product.id])
+      if (!blackList[product.id] && whiteList[product.product_type])
         productComponents.push(
           <ProductIndexItem
             product={product}
