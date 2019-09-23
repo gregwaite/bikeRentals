@@ -19,12 +19,13 @@ class CheckoutProductIndex extends React.Component {
   }
 
   render() {
-    const { checkoutProducts } = this.props;
+    const { checkoutProducts, removeCheckoutProducts } = this.props;
     const indexItems = checkoutProducts.map((product, i) => {
       return (
         <CheckoutProductIndexItem
           product={product}
           key={i}
+          removeCheckoutProducts={removeCheckoutProducts}
         ></CheckoutProductIndexItem>
       );
     });

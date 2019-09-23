@@ -26,9 +26,9 @@ class ProductIndexItem extends React.Component {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-        <button
-          onClick={e => this.props.handleSubmit(e, product, amount)}
-        ></button>
+        <button onClick={e => this.props.handleSubmit(e, product, amount)}>
+          Add to cart
+        </button>
       </form>
     ) : (
       <p></p>

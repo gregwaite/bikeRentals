@@ -14,6 +14,9 @@ class CheckoutProductIndexItem extends React.Component {
         <p>{product.price}</p>
         <p>{product.product_type}</p>
         <p>{product.amount}</p>
+        <button onClick={e => this.props.removeCheckoutProducts(e, product)}>
+          Remove from cart
+        </button>
       </div>
     );
   }
