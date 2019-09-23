@@ -6,7 +6,8 @@ import ProductIndex from "./product_index";
 const mapStateToProps = state => {
   return {
     products: Object.values(state.entities.products),
-    orders: Object.values(state.entities.orders)
+    orders: Object.values(state.entities.orders),
+    loggedIn: Boolean(state.session.id)
   };
 };
 

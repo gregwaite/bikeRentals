@@ -9,17 +9,17 @@ class CheckoutProductIndex extends React.Component {
   }
 
   handleCheckout() {
-    const { checkoutProducts } = this.props;
+    const { checkoutProducts, createOrder } = this.props;
     const orderArray = [];
     checkoutProducts.forEach(product => {
       orderArray.push({ product_id: product.id, amount: product.amount });
     });
     const order = { user_products: orderArray };
-    this.props.createOrder(order);
+    createOrder(order);
   }
 
   render() {
-    const { checkoutProducts, createOrder, fetchOrders } = this.props;
+    const { checkoutProducts } = this.props;
     const indexItems = checkoutProducts.map((product, i) => {
       return (
         <CheckoutProductIndexItem
@@ -32,7 +32,6 @@ class CheckoutProductIndex extends React.Component {
       <div>
         {indexItems}
         <button onClick={this.handleCheckout}>Checkout</button>
-        <button onClick={fetchOrders}>View Orders</button>
       </div>
     );
   }
