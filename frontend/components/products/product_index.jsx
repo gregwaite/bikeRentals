@@ -38,14 +38,15 @@ class ProductIndex extends React.Component {
     const whiteList = Object.assign({}, this.state.whiteList);
     const numbersInCheckout = Object.assign({}, this.state.numbersInCheckout);
     if (product.product_type == "bike") {
+      debugger;
       numbersInCheckout["bike"] += amount;
       whiteList["accessory"] = true;
+      whiteList["addon"] = true;
     } else if (product.product_type == "accessory") {
       numbersInCheckout["accessory"] += amount;
       if (numbersInCheckout["bike"] - numbersInCheckout["accessory"] < 1) {
         whiteList["accessory"] = false;
       }
-      whiteList["addon"] = true;
     }
 
     const blackList = Object.assign({}, this.state.blackList);
@@ -67,7 +68,7 @@ class ProductIndex extends React.Component {
   removeCheckoutProducts(e, product) {
     e.preventDefault();
 
-    const blackList = Object.assign({}, this.state.blackList);
+    let blackList = Object.assign({}, this.state.blackList);
     blackList[product.id] = false;
 
     const checkoutProduct = Object.assign({}, product);
@@ -82,7 +83,6 @@ class ProductIndex extends React.Component {
       numbersInCheckout["bike"] -= product.amount;
       if (numbersInCheckout["bike"] - numbersInCheckout["accessory"] < 1) {
         whiteList["accessory"] = false;
-        whiteList["addon"] = false;
       } else if (
         numbersInCheckout["bike"] - numbersInCheckout["accessory"] >
         0
@@ -91,16 +91,16 @@ class ProductIndex extends React.Component {
       }
     } else if (product.product_type == "accessory") {
       numbersInCheckout["accessory"] -= product.amount;
+      if (numbersInCheckout["bike"] - numbersInCheckout["accessory"] > 0) {
+        whiteList["accessory"] = true;
+      }
     }
 
     if (!checkoutProducts.find(product => product.product_type == "bike")) {
       whiteList["accessory"] = false;
       whiteList["addon"] = false;
+      blackList = {};
       checkoutProducts = [];
-    } else if (
-      !checkoutProducts.find(product => product.product_type == "accessory")
-    ) {
-      whiteList["addon"] = false;
     }
 
     this.setState({
