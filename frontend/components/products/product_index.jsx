@@ -15,11 +15,12 @@ class ProductIndex extends React.Component {
 
     this.addCheckoutProducts = this.addCheckoutProducts.bind(this);
     this.removeCheckoutProducts = this.removeCheckoutProducts.bind(this);
-    this.orders = this.orders.bind(this);
-    this.checkOut = this.checkOut.bind(this);
+    this.ordersLink = this.ordersLink.bind(this);
+    this.checkOutComponents = this.checkOutComponents.bind(this);
   }
   componentDidMount() {
     this.props.fetchProducts();
+    this.props.fetchOrders();
   }
 
   addCheckoutProducts(e, product, amount) {
@@ -100,8 +101,8 @@ class ProductIndex extends React.Component {
     });
   }
 
-  orders() {
-    if (this.props.loggedIn) {
+  ordersLink() {
+    if (this.props.loggedIn && this.props.orders.length > 0) {
       return (
         <nav>
           <Link to="/orders">Your Orders</Link>
@@ -110,7 +111,7 @@ class ProductIndex extends React.Component {
     }
   }
 
-  checkOut(checkoutProducts, createOrder, loggedIn) {
+  checkOutComponents(checkoutProducts, createOrder, loggedIn) {
     if (loggedIn && checkoutProducts.length > 0) {
       return (
         <div className="checkout-product-index">
@@ -146,15 +147,19 @@ class ProductIndex extends React.Component {
           ></ProductIndexItem>
         );
     });
-    const orders = this.orders();
-    const checkOut = this.checkOut(checkoutProducts, createOrder, loggedIn);
+    const ordersLink = this.ordersLink();
+    const checkOutComponents = this.checkOutComponents(
+      checkoutProducts,
+      createOrder,
+      loggedIn
+    );
     return (
       <div className="all-products">
         <div className="product-index">
-          {orders}
+          {ordersLink}
           {productComponents}
         </div>
-        {checkOut}
+        {checkOutComponents}
       </div>
     );
   }
