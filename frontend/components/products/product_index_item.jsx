@@ -40,13 +40,6 @@ class ProductIndexItem extends React.Component {
     const amountName = amount > 1 ? `${product.name}s` : `${product.name}`;
     const buttons = loggedIn ? (
       <div className="product-index-item-buttons">
-        {/* <select value={amount} onChange={this.handleChange}>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select> */}
         <button onClick={e => this.handleChange(e, "subtract")}>-</button>
         {`${amount} ${amountName}`}
         <button onClick={e => this.handleChange(e, "add")}>+</button>
@@ -55,7 +48,7 @@ class ProductIndexItem extends React.Component {
         </button>
       </div>
     ) : (
-      <p></p>
+      <div></div>
     );
     return (
       <div className="product-index-item">

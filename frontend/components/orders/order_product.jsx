@@ -4,11 +4,11 @@ class OrderProduct extends React.Component {
   render() {
     const { product, amount } = this.props;
     return (
-      <div>
-        <p>{product.name}</p>
-        <p>{amount}</p>
-        <p>{product.price}</p>
-        <p>{product.product_type}</p>
+      <div className="product-index-item">
+        <div>{product.name}</div>
+        <div>{amount}</div>
+        <div>{product.price}</div>
+        <div>{product.product_type}</div>
       </div>
     );
   }

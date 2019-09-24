@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { fetchProducts } from "../../actions/product_actions";
 import { createOrder, fetchOrders } from "../../actions/order_actions";
 import ProductIndex from "./product_index";
@@ -19,7 +20,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProductIndex);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ProductIndex)
+);

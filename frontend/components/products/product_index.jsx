@@ -120,6 +120,7 @@ class ProductIndex extends React.Component {
             checkoutProducts={checkoutProducts}
             createOrder={createOrder}
             removeCheckoutProducts={this.removeCheckoutProducts}
+            history={this.props.history}
           ></CheckoutProductIndex>
         </div>
       );

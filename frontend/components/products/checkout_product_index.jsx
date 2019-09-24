@@ -16,6 +16,7 @@ class CheckoutProductIndex extends React.Component {
     });
     const order = { user_products: orderArray };
     createOrder(order);
+    this.props.history.push("/orders");
   }
 
   render() {

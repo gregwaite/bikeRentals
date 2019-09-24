@@ -8,13 +8,17 @@ class OrderIndexItem extends React.Component {
     const orderProducts = products.map(orderProduct => {
       const { amount } = order.user_products[orderProduct.id];
       return (
-        <OrderProduct product={orderProduct} amount={amount}></OrderProduct>
+        <OrderProduct
+          product={orderProduct}
+          amount={amount}
+          key={orderProduct.id}
+        ></OrderProduct>
       );
     });
     return (
       <div>
-        <p>This is an order your ordered</p>
-        <p>{orderProducts}</p>
+        <div>This is an order your ordered</div>
+        <div>{orderProducts}</div>
       </div>
     );
   }
