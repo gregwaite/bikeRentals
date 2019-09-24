@@ -9,13 +9,15 @@ class OrderIndex extends React.Component {
 
   render() {
     const { orders } = this.props;
-    const orderItems = orders.map((order, idx) => {
-      return <OrderIndexItems order={order} key={idx}></OrderIndexItems>;
-    });
+    const orderItems = orders
+      .map((order, idx) => {
+        return <OrderIndexItems order={order} key={idx}></OrderIndexItems>;
+      })
+      .reverse();
     return (
       <div className="product-index">
         <Link to="/">Home</Link>
-        <h1>Your Orders</h1>
+        <h1>Your Rentals</h1>
         {orderItems}
       </div>
     );

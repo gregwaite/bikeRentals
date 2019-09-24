@@ -17,7 +17,7 @@ class OrderIndexItem extends React.Component {
     });
     return (
       <div>
-        <div>This is an order your ordered</div>
+        <div>This is a rental you rented</div>
         <div>{orderProducts}</div>
       </div>
     );

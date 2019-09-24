@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { login } from "../../actions/session_actions";
 import { fetchProducts } from "../../actions/product_actions";
 import { createOrder, fetchOrders } from "../../actions/order_actions";
 import ProductIndex from "./product_index";
@@ -16,7 +17,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchProducts: () => dispatch(fetchProducts()),
     createOrder: order => dispatch(createOrder(order)),
-    fetchOrders: () => dispatch(fetchOrders())
+    fetchOrders: () => dispatch(fetchOrders()),
+    login: user => dispatch(login(user))
   };
 };
 

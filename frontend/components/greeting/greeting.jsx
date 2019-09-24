@@ -6,7 +6,8 @@ const Greeting = ({ currentUser, logout, history, destroyOrders }) => {
     <nav>
       <Link to="/login">Login</Link>
       &nbsp;or&nbsp;
-      <Link to="/signup">Sign up!</Link>
+      <Link to="/signup">Sign up</Link>
+      {` to Rent Bikes!`}
     </nav>
   );
   const personalGreeting = () => (

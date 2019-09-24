@@ -15,12 +15,22 @@ class ProductIndex extends React.Component {
 
     this.addCheckoutProducts = this.addCheckoutProducts.bind(this);
     this.removeCheckoutProducts = this.removeCheckoutProducts.bind(this);
-    this.ordersLink = this.ordersLink.bind(this);
+    this.rentalsLink = this.rentalsLink.bind(this);
     this.checkOutComponents = this.checkOutComponents.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
   componentDidMount() {
     this.props.fetchProducts();
     this.props.fetchOrders();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.orders !== this.props.orders) {
+      this.props.fetchOrders();
+    }
+  }
+
+  demoLogin() {
+    this.props.login({ username: "guest", password: "password" });
   }
 
   addCheckoutProducts(e, product, amount) {
@@ -101,11 +111,11 @@ class ProductIndex extends React.Component {
     });
   }
 
-  ordersLink() {
+  rentalsLink() {
     if (this.props.loggedIn && this.props.orders.length > 0) {
       return (
         <nav>
-          <Link to="/orders">Your Orders</Link>
+          <Link to="/orders">Your Rentals</Link>
         </nav>
       );
     }
@@ -135,10 +145,27 @@ class ProductIndex extends React.Component {
       numbersInCheckout
     } = this.state;
 
-    const productComponents = [];
+    const bikes = [];
+    let bikesH1 = "";
+    const accessories = [];
+    let accessoriesH1 = "";
+    const addons = [];
+    let addonsH1 = "";
     products.forEach(product => {
-      if (!blackList[product.id] && whiteList[product.product_type])
-        productComponents.push(
+      if (
+        !blackList[product.id] &&
+        whiteList[product.product_type] &&
+        product.product_type == "bike"
+      ) {
+        bikesH1 = loggedIn ? (
+          <h1>Rent a bike!</h1>
+        ) : (
+          <h1>
+            Log in or <button onClick={this.demoLogin}> or Demo</button> to rent
+            a bike!
+          </h1>
+        );
+        bikes.push(
           <ProductIndexItem
             product={product}
             key={product.id}
@@ -147,8 +174,43 @@ class ProductIndex extends React.Component {
             numbersInCheckout={numbersInCheckout}
           ></ProductIndexItem>
         );
+      } else if (
+        !blackList[product.id] &&
+        whiteList[product.product_type] &&
+        product.product_type == "accessory"
+      ) {
+        accessoriesH1 = (
+          <h1>
+            You're gonna need {bikes.length > 1 ? "some helmets!" : "a helmet!"}
+          </h1>
+        );
+        accessories.push(
+          <ProductIndexItem
+            product={product}
+            key={product.id}
+            handleSubmit={this.addCheckoutProducts}
+            loggedIn={loggedIn}
+            numbersInCheckout={numbersInCheckout}
+          ></ProductIndexItem>
+        );
+      } else if (
+        !blackList[product.id] &&
+        whiteList[product.product_type] &&
+        product.product_type == "addon"
+      ) {
+        addonsH1 = <h1>Add some insurance</h1>;
+        addons.push(
+          <ProductIndexItem
+            product={product}
+            key={product.id}
+            handleSubmit={this.addCheckoutProducts}
+            loggedIn={loggedIn}
+            numbersInCheckout={numbersInCheckout}
+          ></ProductIndexItem>
+        );
+      }
     });
-    const ordersLink = this.ordersLink();
+    const rentalsLink = this.rentalsLink();
     const checkOutComponents = this.checkOutComponents(
       checkoutProducts,
       createOrder,
@@ -157,8 +219,13 @@ class ProductIndex extends React.Component {
     return (
       <div className="all-products">
         <div className="product-index">
-          {ordersLink}
-          {productComponents}
+          {rentalsLink}
+          {bikesH1}
+          <div>{bikes}</div>
+          {accessoriesH1}
+          <div>{accessories}</div>
+          {addonsH1}
+          <div>{addons}</div>
         </div>
         {checkOutComponents}
       </div>
