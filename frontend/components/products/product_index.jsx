@@ -31,6 +31,9 @@ class ProductIndex extends React.Component {
       whiteList["accessory"] = true;
     } else if (product.product_type == "accessory") {
       numbersInCheckout["accessory"] += amount;
+      if (numbersInCheckout["bike"] - numbersInCheckout["accessory"] < 1) {
+        whiteList["accessory"] = false;
+      }
       whiteList["addon"] = true;
     }
 
@@ -60,16 +63,28 @@ class ProductIndex extends React.Component {
     let checkoutProducts = this.state.checkoutProducts.filter(product => {
       return product.id != checkoutProduct.id;
     });
+
     const numbersInCheckout = Object.assign({}, this.state.numbersInCheckout);
+    const whiteList = Object.assign({}, this.state.whiteList);
+
     if (product.product_type == "bike") {
       numbersInCheckout["bike"] -= product.amount;
+      if (numbersInCheckout["bike"] - numbersInCheckout["accessory"] < 1) {
+        whiteList["accessory"] = false;
+        whiteList["addon"] = false;
+      } else if (
+        numbersInCheckout["bike"] - numbersInCheckout["accessory"] >
+        0
+      ) {
+        whiteList["accessory"] = true;
+      }
     } else if (product.product_type == "accessory") {
       numbersInCheckout["accessory"] -= product.amount;
     }
 
-    const whiteList = Object.assign({}, this.state.whiteList);
     if (!checkoutProducts.find(product => product.product_type == "bike")) {
       whiteList["accessory"] = false;
+      whiteList["addon"] = false;
       checkoutProducts = [];
     } else if (
       !checkoutProducts.find(product => product.product_type == "accessory")
@@ -98,7 +113,7 @@ class ProductIndex extends React.Component {
   checkOut(checkoutProducts, createOrder, loggedIn) {
     if (loggedIn && checkoutProducts.length > 0) {
       return (
-        <div>
+        <div className="checkout-product-index">
           <h1>Checkout</h1>
           <CheckoutProductIndex
             checkoutProducts={checkoutProducts}
@@ -134,9 +149,11 @@ class ProductIndex extends React.Component {
     const orders = this.orders();
     const checkOut = this.checkOut(checkoutProducts, createOrder, loggedIn);
     return (
-      <div>
-        {orders}
-        {productComponents}
+      <div className="all-products">
+        <div className="product-index">
+          {orders}
+          {productComponents}
+        </div>
         {checkOut}
       </div>
     );

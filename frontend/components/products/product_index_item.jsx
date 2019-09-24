@@ -39,7 +39,7 @@ class ProductIndexItem extends React.Component {
     const { amount } = this.state;
     const amountName = amount > 1 ? `${product.name}s` : `${product.name}`;
     const buttons = loggedIn ? (
-      <form onSubmit={this.handleSubmit}>
+      <div>
         {/* <select value={amount} onChange={this.handleChange}>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -53,17 +53,17 @@ class ProductIndexItem extends React.Component {
         <button onClick={e => this.props.handleSubmit(e, product, amount)}>
           Add to cart
         </button>
-      </form>
+      </div>
     ) : (
       <p></p>
     );
     return (
-      <div>
-        <p>{product.name}</p>
+      <div className="product-index-item">
         <img src={product.image} alt="" />
-        <p>{product.description}</p>
-        <p>{product.price}</p>
-        <p>{product.product_type}</p>
+        <div>{product.name}</div>
+        <div>{product.description}</div>
+        <div>{product.price}</div>
+        <div>{product.product_type}</div>
         {buttons}
       </div>
     );
