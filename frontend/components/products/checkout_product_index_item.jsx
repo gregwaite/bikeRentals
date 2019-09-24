@@ -7,17 +7,21 @@ class CheckoutProductIndexItem extends React.Component {
   render() {
     const { product } = this.props;
     return (
-      <div className="checkout-product-index-item">
-        <img src={product.image} alt="" />
-        <div>{product.name}</div>
-        <div>{product.description}</div>
-        <div>{product.price}</div>
-        <div>{product.product_type}</div>
-        <div>{product.amount}</div>
+      <div className="product-index-item">
+        <img src={product.image} alt="" className="product-index-item-img" />
         <div>
-          <button onClick={e => this.props.removeCheckoutProducts(e, product)}>
-            Remove from cart
-          </button>
+          <div className="product-index-item-info">
+            <div className="product-index-item-name">{product.name}</div>
+            <div>{product.price}</div>
+            <div>{product.amount}</div>
+          </div>
+          <div className="checkout-product-index-item-buttons">
+            <button
+              onClick={e => this.props.removeCheckoutProducts(e, product)}
+            >
+              Remove from cart
+            </button>
+          </div>
         </div>
       </div>
     );

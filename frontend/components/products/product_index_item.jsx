@@ -39,7 +39,7 @@ class ProductIndexItem extends React.Component {
     const { amount } = this.state;
     const amountName = amount > 1 ? `${product.name}s` : `${product.name}`;
     const buttons = loggedIn ? (
-      <div>
+      <div className="product-index-item-buttons">
         {/* <select value={amount} onChange={this.handleChange}>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -59,12 +59,14 @@ class ProductIndexItem extends React.Component {
     );
     return (
       <div className="product-index-item">
-        <img src={product.image} alt="" />
-        <div>{product.name}</div>
-        <div>{product.description}</div>
-        <div>{product.price}</div>
-        <div>{product.product_type}</div>
-        {buttons}
+        <img src={product.image} alt="" className="product-index-item-img" />
+        <div className="product-index-item-contents">
+          <div className="product-index-item-info">
+            <div className="product-index-item-name">{product.name}</div>
+            <div>{product.price}</div>
+          </div>
+          {buttons}
+        </div>
       </div>
     );
   }
