@@ -38,7 +38,6 @@ class ProductIndex extends React.Component {
     const whiteList = Object.assign({}, this.state.whiteList);
     const numbersInCheckout = Object.assign({}, this.state.numbersInCheckout);
     if (product.product_type == "bike") {
-      debugger;
       numbersInCheckout["bike"] += amount;
       whiteList["accessory"] = true;
       whiteList["addon"] = true;
