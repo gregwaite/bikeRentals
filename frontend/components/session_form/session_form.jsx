@@ -25,7 +25,7 @@ class SessionForm extends React.Component {
   }
 
   guestLogin() {
-    this.props.login({ username: "guest", password: "password" });
+    this.props.login({ username: "CoolBikerPerson", password: "password" });
   }
 
   renderErrors() {
@@ -40,7 +40,7 @@ class SessionForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="login-signup">
         <form onSubmit={this.handleSubmit}>
           Welcome to Bike Rentals!
           <br />

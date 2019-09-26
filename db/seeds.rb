@@ -11,7 +11,7 @@ UserProduct.delete_all
 Order.delete_all
 
 User.create!(
-  username: 'guest',
+  username: 'CoolBikerPerson',
   password: 'password'
 )
 

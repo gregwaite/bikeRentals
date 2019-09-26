@@ -56,7 +56,7 @@ class ProductIndexItem extends React.Component {
         <div className="product-index-item-contents">
           <div className="product-index-item-info">
             <div className="product-index-item-name">{product.name}</div>
-            <div>{product.price}</div>
+            <div>${product.price}</div>
           </div>
           {buttons}
         </div>

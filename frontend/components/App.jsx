@@ -9,7 +9,7 @@ import OrderIndex from "./orders/order_index_container";
 
 const App = () => (
   <div>
-    <h1>Bike Rentals</h1>
+    <h1 className="MainH1">Bike Rentals</h1>
     <GreetingContainer />
     <Switch>
       <Route exact path="/" component={ProductIndex}></Route>

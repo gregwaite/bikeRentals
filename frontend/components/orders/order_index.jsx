@@ -15,10 +15,12 @@ class OrderIndex extends React.Component {
       })
       .reverse();
     return (
-      <div className="product-index">
-        <Link to="/">Home</Link>
-        <h1>Your Rentals</h1>
-        {orderItems}
+      <div className="order-products">
+        <div className="product-index">
+          <Link to="/">Home</Link>
+          <h1>Your Rentals</h1>
+          {orderItems}
+        </div>
       </div>
     );
   }

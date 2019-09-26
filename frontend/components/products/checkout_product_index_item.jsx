@@ -12,8 +12,8 @@ class CheckoutProductIndexItem extends React.Component {
         <div>
           <div className="product-index-item-info">
             <div className="product-index-item-name">{product.name}</div>
-            <div>{product.price}</div>
-            <div>{product.amount}</div>
+            <div>${product.price}</div>
+            <div>QTY: {product.amount}</div>
           </div>
           <div className="checkout-product-index-item-buttons">
             <button

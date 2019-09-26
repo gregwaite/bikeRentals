@@ -21,16 +21,18 @@ class ProductIndex extends React.Component {
   }
   componentDidMount() {
     this.props.fetchProducts();
-    this.props.fetchOrders();
+    if (this.props.loggedIn) {
+      this.props.fetchOrders();
+    }
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.orders !== this.props.orders) {
+    if (!prevProps.loggedIn && this.props.loggedIn) {
       this.props.fetchOrders();
     }
   }
 
   demoLogin() {
-    this.props.login({ username: "guest", password: "password" });
+    this.props.login({ username: "CoolBikerPerson", password: "password" });
   }
 
   addCheckoutProducts(e, product, amount) {
@@ -157,12 +159,12 @@ class ProductIndex extends React.Component {
         product.product_type == "bike"
       ) {
         bikesH1 = loggedIn ? (
-          <h1>Rent a bike!</h1>
+          <h3>Rent a bike!</h3>
         ) : (
-          <h1>
+          <h2>
             Log in or <button onClick={this.demoLogin}> or Demo</button> to rent
             a bike!
-          </h1>
+          </h2>
         );
         bikes.push(
           <ProductIndexItem
@@ -178,11 +180,7 @@ class ProductIndex extends React.Component {
         whiteList[product.product_type] &&
         product.product_type == "accessory"
       ) {
-        accessoriesH1 = (
-          <h1>
-            You're gonna need {bikes.length > 1 ? "some helmets!" : "a helmet!"}
-          </h1>
-        );
+        accessoriesH1 = <h3>Won't hurt to get a helmet! (1 per bike)</h3>;
         accessories.push(
           <ProductIndexItem
             product={product}
@@ -197,7 +195,7 @@ class ProductIndex extends React.Component {
         whiteList[product.product_type] &&
         product.product_type == "addon"
       ) {
-        addonsH1 = <h1>Add some insurance</h1>;
+        addonsH1 = <h3>Add some insurance</h3>;
         addons.push(
           <ProductIndexItem
             product={product}
