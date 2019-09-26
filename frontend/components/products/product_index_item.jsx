@@ -40,12 +40,16 @@ class ProductIndexItem extends React.Component {
     const amountName = amount > 1 ? `${product.name}s` : `${product.name}`;
     const buttons = loggedIn ? (
       <div className="product-index-item-buttons">
-        <button onClick={e => this.handleChange(e, "subtract")}>-</button>
-        {`${amount} ${amountName}`}
-        <button onClick={e => this.handleChange(e, "add")}>+</button>
-        <button onClick={e => this.props.handleSubmit(e, product, amount)}>
-          Add to cart
-        </button>
+        <div>
+          <button onClick={e => this.handleChange(e, "subtract")}>-</button>
+          {`${amount} ${amountName}`}
+          <button onClick={e => this.handleChange(e, "add")}>+</button>
+        </div>
+        <div>
+          <button onClick={e => this.props.handleSubmit(e, product, amount)}>
+            Add to cart
+          </button>
+        </div>
       </div>
     ) : (
       <div></div>

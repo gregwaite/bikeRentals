@@ -1,23 +1,50 @@
-.MainH1 {
-  margin-left: 20px;
-}
-.greeting {
-  margin-left: 40px;
-  border-bottom: 1px solid rgb(230, 230, 230);
-  height: 88px;
-  position: relative;
-}
+@media screen and (max-width: 500px) {
+  .MainH1 {
+    margin-left: 20px;
+  }
+  .greeting {
+    margin-left: 40px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    height: 88px;
+    position: relative;
+  }
 
-.greeting-links {
-  position: absolute;
-  bottom: 40px;
-  left: 20px;
-}
+  .greeting-links {
+    position: absolute;
+    bottom: 40px;
+    left: 20px;
+  }
 
-.personal-message {
-  padding-left: 20px;
-}
+  .personal-message {
+    padding-left: 20px;
+  }
 
-.login-signup {
-  margin-left: 60px;
+  .login-signup {
+    margin-left: 60px;
+  }
+}
+@media screen and (min-width: 501px) {
+  .MainH1 {
+    margin-left: 20px;
+  }
+  .greeting {
+    margin-left: 40px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    height: 88px;
+    position: relative;
+  }
+
+  .greeting-links {
+    position: absolute;
+    bottom: 40px;
+    left: 20px;
+  }
+
+  .personal-message {
+    padding-left: 20px;
+  }
+
+  .login-signup {
+    margin-left: 60px;
+  }
 }
